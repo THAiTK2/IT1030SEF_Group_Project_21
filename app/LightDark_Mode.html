@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Week 9</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body data-theme="light">
+    <button type="button" class="Theme-Switcher" onclick="switchTheme()">switch to dark mode</button>
+    <img src="notebook.png" width="80" height="50">
+    <h1>Notebook</h1>
+    <form>
+        <textarea id="message-output" readonly></textarea>
+        <textarea id="message-input"></textarea>
+        <button type="button" id="submit-button" onclick="updateNotebook()">Submit</button>
+
+    </form>
+    <script>
+        var inputElement = document.getElementById('message-input');
+        var outputElement = document.getElementById('message-output');
+        var themeSwitcher = document.querySelector('.Theme-Swtitcher');
+
+        function updateNotebook() {
+            var message = inputElement.value;
+
+            if (message === '') {
+                alert("Please enter a note before submitting.");
+                return;
+            }
+
+            outputElement.value += message + '\n';
+            inputElement.value = '';
+        }
+
+        function switchTheme() {
+            var currentTheme = document.body.getAttribute('data-theme');
+
+            if (currentTheme === "light") {
+                document.body.setAttribute('data-theme', 'dark');
+                themeSwitcher.textContent = 'Switch to Light Mode';
+            } else {
+                document.body.setAttribute('data-theme', 'light')
+                themeSwitcher.textContent = 'Switch to Dark mode';
+            }
+        }
+
+    </script>
+
+</body>
+
+</html>
