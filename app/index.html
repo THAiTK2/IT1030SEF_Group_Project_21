@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Health and Fitness Tracking App</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body data-theme="light">
+  <div class="mobile-app" id="app">
+    <main class="screen-wrap">
+      <!-- ===== Onboarding Screen ===== -->
+      <section class="screen screen-current" data-screen="onboarding">
+        <header class="top-row">
+          <button class="text-button" data-target="login">Skip</button>
+        </header>
+
+        <div class="hero-image-wrap">
+          <img
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxZv50psYgJaCBY7D06ac2ncliTzT7bVmH0eVnBywQno87ksbp-I7JS2gMhrVTCShst8GLrcca1AB1JqsNY7eVHD9xGrBLF99yLjG6m0pcLjGJr6xxm8iVxjjv0yP32XlQF9FoogCyV7bfffgoZcxf0R5ZSxcljlRVcy0Exif53hLTjeO5EYhXFbLZ-rfXszhwv1flzI5EnhBvF5ith5LsC7QQb1FDkFk6k-3HMkvxg-gbWpolatDp8GIRvYjHYnYxHAi88W9tes4"
+            alt="Athlete preparing for sprint" />
+          <div class="feature-pill">
+            <span class="material-symbols-outlined">bolt</span>
+            New Feature
+          </div>
+        </div>
+
+        <div class="content-block center">
+          <h1 class="title">Empower Your <span class="green">Fitness Journey</span></h1>
+          <p class="subtext">
+            Track your workouts, monitor your progress, and reach your health goals with ease and precision.
+          </p>
+          <div class="dots">
+            <span class="dot active"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+          </div>
+          <button class="btn btn-primary btn-large" data-target="login">
+            Get Started
+            <span class="material-symbols-outlined">arrow_forward</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- ===== Login Screen ===== -->
+      <section class="screen" data-screen="login">
+        <header class="bar-header">
+          <button class="icon-btn" aria-label="Go back" data-target="onboarding">
+            <span class="material-symbols-outlined">arrow_back</span>
+          </button>
+          <h2>Login</h2>
+          <div class="spacer"></div>
+        </header>
+
+        <div class="hero-image-wrap hero-login">
+          <img
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBIrRP6QxSatDvg58S-oab2U-kZfU1zE4fNk53orGG3XvS1iDqGKpycbJ5OnhUc4H0UIXgT2um1j3n4RX4onkX2svjotwo71zvXaUUumhdmgq5Dx6Hd6EEH8-wrxFfa6asK4ofKL8QtOcIFMDIWSF_mKweS--uNq84j3drC5ccV7K8IT0rC2We1DEPUrLrYaF8KGQjJk50VMeFYU0RBBMJWRMx_2RAW2eJKJfiQRig6UdyEzk72j0i2BD-Uz4eJxmfhAcebSHekmqw"
+            alt="Woman standing with dumbbells" />
+        </div>
+
+        <div class="content-block form-block">
+          <h1 class="title">Welcome Back</h1>
+          <p class="subtext">Fuel your progress. Log in to your fitness dashboard.</p>
+
+          <form id="login-form" novalidate>
+            <label>Email Address</label>
+            <input type="email" placeholder="name@example.com" required />
+
+            <label>Password</label>
+            <div class="password-wrap">
+              <input id="password-input" type="password" placeholder="Enter your password" required />
+              <button type="button" class="icon-btn ghost" data-action="toggle-password"
+                aria-label="Toggle password visibility">
+                <span id="password-icon" class="material-symbols-outlined">visibility</span>
+              </button>
+            </div>
+
+            <a href="#" class="link-green" data-toast="Password reset will be available soon.">Forgot Password?</a>
+
+            <button type="submit" class="btn btn-primary btn-large">Login</button>
+          </form>
+
+          <div class="divider"><span>Or continue with</span></div>
+
+          <div class="social-row">
+            <button class="btn btn-secondary" data-action="show-toast"
+              data-toast="Google sign-in coming soon.">Google</button>
+            <button class="btn btn-secondary" data-action="show-toast"
+              data-toast="Apple sign-in coming soon.">Apple</button>
+          </div>
+
+          <p class="sign-up-row">
+            Don't have an account?
+            <a class="link-green" href="#" data-toast="Sign-up page will be added soon.">Sign Up</a>
+          </p>
+        </div>
+      </section>
+
+      <!-- ===== Home Screen ===== -->
+      <section class="screen" data-screen="home">
+        <div class="content-block page-padding">
+          <header class="home-header">
+            <div>
+              <h2>Welcome back, <span id="home-welcome-name">Alex Rivera</span>!</h2>
+            </div>
+          </header>
+
+          <div class="action-grid">
+            <button class="btn btn-primary" data-action="open-exercise-modal">
+              <span class="material-symbols-outlined">add</span>Log Exercise
+            </button>
+            <button class="btn btn-secondary" data-action="open-water-modal">
+              <span class="material-symbols-outlined">water_drop</span>Track Water
+            </button>
+          </div>
+
+          <div class="tracking-card">
+            <div class="tracking-head-row">
+              <h3>Today's Tracking</h3>
+              <span id="goal-badge" class="goal-badge">Maintenance</span>
+            </div>
+            <div class="tracking-items">
+              <div class="tracking-item">
+                <span class="material-symbols-outlined">water_drop</span>
+                <div>
+                  <p class="label">Water</p>
+                  <p class="value"><span id="water-value">1.80</span>L <span class="target">/ 3L</span></p>
+                </div>
+              </div>
+              <div class="tracking-item">
+                <span class="material-symbols-outlined">timer</span>
+                <div>
+                  <p class="label">Weekly Activity</p>
+                  <p class="value"><span id="weekly-activity">0</span> <span class="target tracking-inline-target">/250
+                      min</span>
+                  </p>
+                </div>
+              </div>
+              <div class="tracking-item">
+                <span class="material-symbols-outlined">local_fire_department</span>
+                <div>
+                  <p class="label" id="calorie-label">Calories Burned</p>
+                  <p class="value" id="calorie-value"><span id="today-calories">0</span> kcal</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Goal-Specific Tracking Info -->
+            <div class="goal-tracking-section goal-info-panel" id="goal-tracking-info">
+              <!-- Weight Loss Info -->
+              <div class="goal-info-block is-hidden-initial" id="weight-loss-info">
+                <p class="goal-info-text"><strong>Weight Loss:</strong> Track
+                  weekly average weight and body fat reduction</p>
+                <button class="btn btn-secondary full goal-action-btn" data-action="open-weight-modal">Log
+                  Weight</button>
+                <p class="goal-info-note" id="last-weight-loss">No weight logged yet
+                </p>
+              </div>
+
+              <!-- Maintenance Info -->
+              <div class="goal-info-block is-hidden-initial" id="maintenance-info">
+                <p class="goal-info-text"><strong>Maintenance:</strong> Weigh 2-3
+                  times per week, maintain 250+ min activity</p>
+                <button class="btn btn-secondary full goal-action-btn" data-action="open-weight-modal">Log
+                  Weight</button>
+                <p class="goal-info-note" id="weight-stability">Monitor weekly for
+                  stability</p>
+              </div>
+
+              <!-- Muscle Gain Info -->
+              <div class="goal-info-block is-hidden-initial" id="muscle-gain-info">
+                <p class="goal-info-text"><strong>Muscle Gain:</strong> Track
+                  weekly gains & measure muscle girth</p>
+                <button class="btn btn-secondary full goal-action-btn" data-action="open-weight-modal">Log
+                  Weight & Measurements</button>
+                <p class="goal-info-note" id="muscle-progress">Weekly progress: track
+                  strength gains</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== Workouts Screen ===== -->
+      <section class="screen" data-screen="workouts">
+        <div class="content-block page-padding">
+          <header class="bar-header no-border">
+            <button class="icon-btn" data-action="show-toast" data-toast="Menu panel coming soon.">
+              <span class="material-symbols-outlined">menu</span>
+            </button>
+            <h2>Workouts</h2>
+            <button class="icon-btn" data-action="show-toast" data-toast="Search will be available soon.">
+              <span class="material-symbols-outlined">search</span>
+            </button>
+          </header>
+
+          <div class="chip-row">
+            <button class="chip active" data-action="toggle-workout-filter" data-filter="all">All</button>
+            <button class="chip" data-action="toggle-workout-filter" data-filter="cardio">Cardio</button>
+            <button class="chip" data-action="toggle-workout-filter" data-filter="strength">Strength</button>
+          </div>
+
+          <div class="section-row">
+            <h3>Recommended for You</h3>
+            <button class="text-link" data-action="show-toast" data-toast="More recommendations are coming soon.">View
+              All</button>
+          </div>
+
+          <button
+            type="button"
+            class="card mini-workout workout-video-trigger"
+            data-action="toggle-workout-video"
+            id="workout-video-trigger"
+            aria-expanded="false"
+            aria-controls="workout-video-panel">
+            <img id="workout-card-image"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuCB96crVE7AFULLtcIM0tt6_MgwBfaPsbQFMGDI5sE3EYQDd1whySoEOiXXrxP78gdKD-OJi03SRkCigmsUZwSQsXigQU8wUirhXfg_ESwkMULtlDdvhqMv77nMUArgISSwO5l5Wqm1rzHhfzhxe7HA1QfiJ9g0IEnJpJgSWIafHj6uVQqODePPoJ5J73G4kKy60AkzwSYUIDY7458w-ahSP0M4ks1gaFWplG7zoyBpk8BTJRyLWADF2xtKA9Cf7X5ZedNcHfjIF40"
+              alt="Morning Mobility" />
+            <div>
+              <h4 id="workout-card-title">Morning Mobility Flow</h4>
+              <p id="workout-card-subtitle">Intermediate • Yoga</p>
+              <strong id="workout-card-duration" class="green">15 min</strong>
+            </div>
+          </button>
+
+          <div id="workout-video-panel" class="card workout-video-panel hidden">
+            <div class="workout-video-header">
+              <h4 id="workout-video-title">Morning Mobility Flow Preview</h4>
+              <button type="button" class="icon-btn small-icon" data-action="close-workout-video" aria-label="Close workout video preview">
+                <span class="material-symbols-outlined">close</span>
+              </button>
+            </div>
+            <div class="workout-video-frame">
+              <iframe
+                id="workout-video-iframe"
+                title="Workout video preview"
+                src="about:blank"
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen></iframe>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== Metrics Screen ===== -->
+      <section class="screen" data-screen="metrics">
+        <div class="content-block page-padding">
+          <header class="bar-header no-border">
+            <button class="icon-btn" data-target="home"><span
+                class="material-symbols-outlined">arrow_back</span></button>
+            <h2>Health Metrics</h2>
+            <button class="icon-btn" data-action="show-toast" data-toast="Notifications center coming soon.">
+              <span class="material-symbols-outlined">notifications</span>
+            </button>
+          </header>
+
+          <article class="card bmi-card">
+            <div class="bmi-header">
+              <h4>BMI</h4>
+              <span id="bmi-category" class="bmi-category bmi-normal">Normal</span>
+            </div>
+            <p class="big"><span id="bmi-value">22.2</span> <small>kg/m²</small></p>
+            <div class="bmi-scale-wrap">
+              <div class="bmi-scale">
+                <span id="bmi-zone-underweight" class="bmi-underweight-zone"></span>
+                <span id="bmi-zone-normal" class="bmi-normal-zone"></span>
+                <span id="bmi-zone-overweight" class="bmi-overweight-zone"></span>
+                <span id="bmi-zone-obese" class="bmi-obese-zone"></span>
+              </div>
+              <span id="bmi-pointer" class="bmi-pointer"></span>
+            </div>
+            <div class="bmi-legend">
+              <small>Underweight</small>
+              <small>Normal</small>
+              <small>Overweight</small>
+              <small>Obese</small>
+            </div>
+          </article>
+
+          <article class="card food-target-card">
+            <div class="food-target-top">
+              <h4>Daily Calorie Target</h4>
+              <span id="food-goal-chip" class="food-goal-chip maintenance">Maintenance</span>
+            </div>
+            <p class="big"><span id="food-target-value">--</span> <small>kcal/day</small></p>
+            <div class="food-metrics-grid">
+              <div>
+                <span>BMR</span>
+                <strong id="food-bmr-value">--</strong>
+              </div>
+              <div>
+                <span>TDEE</span>
+                <strong id="food-tdee-value">--</strong>
+              </div>
+            </div>
+            <div class="food-aim-chart" id="food-aim-chart">
+              <div id="food-aim-loss" class="food-aim-segment loss"></div>
+              <div id="food-aim-maintenance" class="food-aim-segment maintenance"></div>
+              <div id="food-aim-gain" class="food-aim-segment gain"></div>
+            </div>
+            <div class="food-aim-labels">
+              <small>Loss</small>
+              <small>Maintain</small>
+              <small>Gain</small>
+            </div>
+          </article>
+
+          <article class="card chart-card">
+            <div class="tabs metrics-range-tabs">
+              <button data-action="toggle-metrics-range" data-range="day">Day</button>
+              <button class="active" data-action="toggle-metrics-range" data-range="week">Week</button>
+              <button data-action="toggle-metrics-range" data-range="month">Month</button>
+            </div>
+
+            <div class="tracking-header">
+              <div class="tracking-title-wrap">
+                <h4>Progress Tracking</h4>
+                <p class="tracking-subtitle">Range now follows the tabs above this section.</p>
+              </div>
+            </div>
+
+            <div class="tracking-controls">
+              <div class="tracking-control-group metric-control">
+                <label class="tracking-control-label" for="metric-selector">Metric</label>
+                <select id="metric-selector" class="metric-dropdown">
+                  <option value="calories">Calories Burned</option>
+                  <option value="weight">Weight</option>
+                  <option value="activity">Activity Minutes</option>
+                  <option value="bodyFat">Body Fat %</option>
+                </select>
+              </div>
+
+              <div class="tracking-control-group month-control">
+                <label class="tracking-control-label" for="month-date-picker">Month Anchor Date</label>
+                <input type="date" id="month-date-picker" class="metric-dropdown month-picker" />
+              </div>
+            </div>
+
+            <div id="goal-input-section" class="tracking-goal-panel">
+              <label id="goal-input-label" class="tracking-goal-label">
+                <strong>Set Your Calories Goal (kcal)</strong>
+              </label>
+              <div class="tracking-goal-row">
+                <input type="number" id="goal-input-value" class="tracking-goal-input" placeholder="Enter goal" min="0"
+                  step="0.1" />
+                <button type="button" id="goal-save-btn" class="btn btn-primary small tracking-goal-btn">Set Goal</button>
+              </div>
+            </div>
+
+            <div class="tracking-chart-panel">
+              <canvas id="calorieChart"></canvas>
+            </div>
+
+            <div id="progress-summary-panel" class="tracking-summary-panel">
+              <div id="progress-summary-content" class="tracking-summary-content">
+                <p class="summary-empty">No data yet</p>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- ===== Profile Screen ===== -->
+      <section class="screen" data-screen="profile">
+        <div class="content-block page-padding">
+          <header class="bar-header no-border">
+            <button class="icon-btn" data-action="show-toast" data-toast="Settings panel coming soon.">
+              <span class="material-symbols-outlined">settings</span>
+            </button>
+            <h2>Profile</h2>
+            <button class="icon-btn" data-action="show-toast" data-toast="Share options will be available soon.">
+              <span class="material-symbols-outlined">share</span>
+            </button>
+          </header>
+
+          <div class="profile-center">
+            <div class="profile-photo">
+              <img
+                src="default.png"
+                alt="Athlete profile" />
+            </div>
+
+            <h2 id="profile-name-title">Alex Rivera</h2>
+          </div>
+
+          <div class="section-row">
+            <h3>Profile Details</h3>
+            <button id="profile-edit-trigger" class="btn btn-secondary small" data-action="toggle-profile-edit">Edit
+              Profile</button>
+          </div>
+
+          <div id="profile-details-view" class="card profile-details">
+            <div class="profile-detail-row"><span>Name</span><strong id="profile-name-value">Alex Rivera</strong></div>
+            <div class="profile-detail-row"><span>Height</span><strong id="profile-height-value">175 cm</strong></div>
+            <div class="profile-detail-row"><span>Weight</span><strong id="profile-weight-value">68 kg</strong></div>
+            <div class="profile-detail-row"><span>Sport</span><strong id="profile-sport-value">Running</strong></div>
+            <div class="profile-detail-row"><span>Hobby</span><strong id="profile-hobby-value">Hiking</strong></div>
+            <div class="profile-detail-row"><span>Age</span><strong id="profile-age-value">--</strong></div>
+            <div class="profile-detail-row"><span>Sex</span><strong id="profile-sex-value">--</strong></div>
+            <div class="profile-detail-row"><span>Activity</span><strong id="profile-activity-value">--</strong></div>
+            <div class="profile-detail-row"><span>Goal</span><strong id="profile-goal-value">--</strong></div>
+          </div>
+
+          <form id="profile-edit-form" class="card profile-edit-form hidden" novalidate>
+            <div>
+              <label for="profile-input-name">Name</label>
+              <input id="profile-input-name" type="text" />
+            </div>
+
+            <div class="profile-field-grid">
+              <div>
+                <label for="profile-input-height">Height (cm)</label>
+                <input id="profile-input-height" type="number" min="80" max="250" step="1" />
+              </div>
+              <div>
+                <label for="profile-input-weight">Weight (kg)</label>
+                <input id="profile-input-weight" type="number" min="20" max="300" step="0.1" />
+              </div>
+            </div>
+
+            <div>
+              <label for="profile-input-sport">Sport</label>
+              <input id="profile-input-sport" type="text" />
+            </div>
+
+            <div>
+              <label for="profile-input-hobby">Hobby</label>
+              <input id="profile-input-hobby" type="text" />
+            </div>
+
+            <div class="profile-field-grid">
+              <div>
+                <label for="profile-input-age">Age</label>
+                <input id="profile-input-age" type="number" min="10" max="100" step="1" />
+              </div>
+              <div>
+                <label for="profile-input-sex">Sex</label>
+                <select id="profile-input-sex">
+                  <option value="">Select</option>
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                </select>
+              </div>
+            </div>
+
+            <div>
+              <label for="profile-input-activity">Activity Level</label>
+              <select id="profile-input-activity">
+                <option value="">Select</option>
+                <option value="sedentary">Sedentary (1.2)</option>
+                <option value="light">Lightly Active (1.375)</option>
+                <option value="moderate">Moderately Active (1.55)</option>
+                <option value="very">Very Active (1.725)</option>
+                <option value="extra">Extra Active (1.9)</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="profile-input-goal">Goal</label>
+              <select id="profile-input-goal">
+                <option value="">Select</option>
+                <option value="maintenance">Maintenance</option>
+                <option value="loss">Weight Loss</option>
+                <option value="gain">Weight Gain</option>
+              </select>
+            </div>
+
+            <div class="profile-form-actions">
+              <button type="button" class="btn btn-secondary small" data-action="cancel-profile-edit">Cancel</button>
+              <button type="button" class="btn btn-primary small" data-action="save-profile">Save</button>
+            </div>
+          </form>
+
+          <div class="section-divider">
+            <button type="button" id="theme-switcher" class="btn btn-secondary full">
+              <span class="material-symbols-outlined inline-icon">dark_mode</span>
+              Switch to Dark Mode
+            </button>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ===== Quick Actions Overlay ===== -->
+      <section class="screen quick-actions hidden" data-screen="quick-actions-overlay">
+        <button class="quick-backdrop" data-action="close-quick-actions" aria-label="Close quick actions"></button>
+        <div class="quick-sheet" role="dialog" aria-modal="true" aria-label="Quick actions">
+          <span class="grabber"></span>
+          <h2>Quick Actions</h2>
+          <p>What's your focus right now?</p>
+
+          <div class="quick-grid">
+            <button class="quick-item" data-action="open-exercise-modal">
+              <span class="material-symbols-outlined">fitness_center</span><strong>Workout</strong>
+            </button>
+            <button class="quick-item" data-action="open-water-modal">
+              <span class="material-symbols-outlined">water_drop</span><strong>Water</strong>
+            </button>
+            <button class="quick-item" data-action="quick-action" data-quick="food">
+              <span class="material-symbols-outlined">restaurant</span><strong>Food</strong>
+            </button>
+            <button class="quick-item" data-action="quick-action" data-quick="bmi">
+              <span class="material-symbols-outlined">monitoring</span><strong>BMI</strong>
+            </button>
+          </div>
+
+          <button class="close-quick" data-action="close-quick-actions" aria-label="Close quick actions">
+            <span class="material-symbols-outlined">close</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- ===== Water Logging Modal ===== -->
+      <section class="modal hidden" id="water-modal" data-modal="water">
+        <div class="modal-backdrop" data-action="close-modal" data-modal="water"></div>
+        <div class="modal-content">
+          <header class="modal-header">
+            <h2>Log Water Intake</h2>
+            <button class="icon-btn" data-action="close-modal" data-modal="water">
+              <span class="material-symbols-outlined">close</span>
+            </button>
+          </header>
+          <form id="water-form" class="modal-form">
+            <label for="water-amount">Amount (ml)</label>
+            <input type="number" id="water-amount" placeholder="Enter amount (e.g., 250)" min="1" max="5000" value="" />
+
+            <div class="preset-buttons">
+              <button type="button" class="btn btn-secondary small preset-btn" data-amount="250">250ml</button>
+              <button type="button" class="btn btn-secondary small preset-btn" data-amount="500">500ml</button>
+              <button type="button" class="btn btn-secondary small preset-btn" data-amount="750">750ml</button>
+              <button type="button" class="btn btn-secondary small preset-btn" data-amount="1000">1L</button>
+            </div>
+
+            <label for="water-time">Time (optional)</label>
+            <input type="time" id="water-time" />
+
+            <button type="submit" class="btn btn-primary btn-large">Log Water</button>
+            <button type="button" class="btn btn-secondary btn-large" data-action="close-modal"
+              data-modal="water">Cancel</button>
+          </form>
+        </div>
+      </section>
+
+      <!-- ===== Exercise Logging Modal ===== -->
+      <section class="modal hidden" id="exercise-modal" data-modal="exercise">
+        <div class="modal-backdrop" data-action="close-modal" data-modal="exercise"></div>
+        <div class="modal-content">
+          <header class="modal-header">
+            <h2>Log Exercise</h2>
+            <button class="icon-btn" data-action="close-modal" data-modal="exercise">
+              <span class="material-symbols-outlined">close</span>
+            </button>
+          </header>
+          <form id="exercise-form" class="modal-form">
+            <label for="exercise-type">Exercise Type</label>
+            <select id="exercise-type">
+              <option value="">Select exercise type</option>
+              <option value="running">Running (10 cal/min)</option>
+              <option value="walking">Walking (5 cal/min)</option>
+              <option value="cycling">Cycling (9 cal/min)</option>
+              <option value="swimming">Swimming (12 cal/min)</option>
+              <option value="HIIT">HIIT (14 cal/min)</option>
+              <option value="yoga">Yoga (3 cal/min)</option>
+              <option value="gym">Gym (8 cal/min)</option>
+              <option value="sports">Sports (11 cal/min)</option>
+            </select>
+
+            <label for="exercise-duration">Duration (minutes)</label>
+            <input type="number" id="exercise-duration" placeholder="Enter duration" min="1" max="480" value="" />
+
+            <label for="exercise-intensity">Intensity</label>
+            <select id="exercise-intensity">
+              <option value="low">Low</option>
+              <option value="medium" selected>Medium</option>
+              <option value="high">High</option>
+            </select>
+
+            <div class="exercise-info is-hidden-initial" id="exercise-info">
+              <p>Estimated Calories Burned: <strong id="estimated-calories">0</strong> kcal</p>
+            </div>
+
+            <label for="exercise-time">Time (optional)</label>
+            <input type="time" id="exercise-time" />
+
+            <button type="submit" class="btn btn-primary btn-large">Log Exercise</button>
+            <button type="button" class="btn btn-secondary btn-large" data-action="close-modal"
+              data-modal="exercise">Cancel</button>
+          </form>
+        </div>
+      </section>
+
+      <!-- ===== Weight Logging Modal ===== -->
+      <section class="modal hidden" id="weight-modal" data-modal="weight">
+        <div class="modal-backdrop" data-action="close-modal" data-modal="weight"></div>
+        <div class="modal-content">
+          <header class="modal-header">
+            <h2>Log Weight</h2>
+            <button class="icon-btn" data-action="close-modal" data-modal="weight">
+              <span class="material-symbols-outlined">close</span>
+            </button>
+          </header>
+          <form id="weight-form" class="modal-form">
+            <label for="weight-value">Weight (kg)</label>
+            <input type="number" id="weight-value" placeholder="Enter your weight" min="20" max="300" step="0.1"
+              value="" />
+
+            <label for="body-fat">Body Fat % (optional)</label>
+            <input type="number" id="body-fat" placeholder="Enter body fat percentage" min="5" max="60" step="0.1" />
+
+            <label for="measurement-biceps">Biceps (cm) - Muscle Gain</label>
+            <input type="number" id="measurement-biceps" placeholder="Optional: arm measurement" min="10" max="60"
+              step="0.1" />
+
+            <label for="weight-time">Date</label>
+            <input type="date" id="weight-time" />
+
+            <button type="submit" class="btn btn-primary btn-large">Log Weight</button>
+            <button type="button" class="btn btn-secondary btn-large" data-action="close-modal"
+              data-modal="weight">Cancel</button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <!-- ===== Bottom Navigation ===== -->
+    <nav class="bottom-nav hidden" id="bottom-nav">
+      <button class="nav-item nav-active" data-tab="home">
+        <span class="material-symbols-outlined">home</span>
+        <small>Home</small>
+      </button>
+      <button class="nav-item" data-tab="workouts">
+        <span class="material-symbols-outlined">fitness_center</span>
+        <small>Workouts</small>
+      </button>
+
+      <button class="nav-plus" data-action="open-quick-actions" aria-label="Open quick actions">
+        <span class="material-symbols-outlined">add</span>
+      </button>
+
+      <button class="nav-item" data-tab="metrics">
+        <span class="material-symbols-outlined">bar_chart</span>
+        <small>Metrics</small>
+      </button>
+      <button class="nav-item" data-tab="profile">
+        <span class="material-symbols-outlined">person</span>
+        <small>Profile</small>
+      </button>
+    </nav>
+
+    <div id="app-toast" class="toast" role="status" aria-live="polite"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
