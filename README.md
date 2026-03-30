@@ -42,5 +42,11 @@ code/
 │       ├── metrics.js
 │       └── theme.js
 └── image/
+       ├──default.png
+       ├──login.png
+       ├──on_boarding_screen.png
+       ├──running.jpeg
+       ├──Strength.png
+       ├──yoga.png
 ```
 ---
