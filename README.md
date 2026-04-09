@@ -22,7 +22,7 @@ A mobile-first web application for daily health tracking.
 
 ## Quick Start
 
-1. Download this repository as ZIP, or clone it:
+1. Download this repository as ZIP:
    ```
    git clone https://github.com/THAiTK2/IT1030SEF_Group_Project_21.git
    ```
